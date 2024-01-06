@@ -1,4 +1,4 @@
-@startuml diagram_name
+@startuml
 
 !define AWSPUML <https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/v14.0/dist>
 
