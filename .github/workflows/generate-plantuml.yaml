@@ -1,4 +1,4 @@
-name: generate plantuml Diego
+name: generate plantuml
 on: push
 jobs:
   generate_plantuml:
@@ -11,9 +11,9 @@ jobs:
           fetch-depth: 1
       - name: plantuml
         id: plantuml
-        uses: daherre0/generate-plantuml-action-v1.5
+        uses: grassedge/generate-plantuml-action@v1.5
         with:
           path: plantuml
-          message: "Render PlantUML files Diego"
+          message: "Render PlantUML files"
         env:
           GITHUB_TOKEN: ${{ secrets.WIKI_TOKEN }}
