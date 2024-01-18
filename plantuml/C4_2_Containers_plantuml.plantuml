@@ -1,0 +1,27 @@
+@startuml C4_2_Containers
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+LAYOUT_WITH_LEGEND()
+
+title Sistema de Gestión de Personal - Contenedores
+
+Person(admin, "Administrador", "Gestiona el sistema y la información del personal.")
+Person(rh, "Personal de RH", "Usa el sistema para registrar y mantener la información del personal.")
+Person(empleado, "Empleado", "Interactúa con el sistema para actualizar su información personal y revisar sus turnos y beneficios.")
+
+System_Boundary(c1, "Sistema de Gestión de Personal") {
+    Container(web_app, "Aplicación Web", "Next.js + TypeScript", "Permite a los usuarios interactuar con el sistema.")
+    Container(api, "API de Backend", "FastAPI", "Procesa las solicitudes y gestiona las operaciones de datos.")
+    ContainerDb(db, "Base de Datos", "PostgreSQL", "Almacena información del personal, turnos y reportes.")
+    Container(s3, "Almacenamiento de Documentos", "Amazon S3", "Almacena documentos y archivos del personal.")
+}
+
+Rel(admin, web_app, "Usa")
+Rel(rh, web_app, "Registra y actualiza")
+Rel(empleado, web_app, "Consulta y actualiza")
+Rel(web_app, api, "Envía solicitudes a")
+Rel(api, db, "Lee y escribe en")
+Rel_U(api, s3, "Almacena y recupera documentos con", "HTTPS")
+
+@enduml
